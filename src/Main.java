@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Main {
 
     public static void checkLeapYear(int year) {
@@ -9,9 +11,26 @@ public class Main {
         }
     }
 
+    public static void checkOS(int typeOS, int clientDeviceYear) {
+        int currentYear = LocalDate.now().getYear();
+        if (typeOS == 0) {
+            if (clientDeviceYear > currentYear) {
+                System.out.println("Установите облегченную версию приложения для iOS по ссылке");
+            } else {
+                System.out.println("Установите версию приложения для iOS по ссылке");
+            }
+        } else if (typeOS == 1) {
+            if (clientDeviceYear > currentYear) {
+                System.out.println("Установите облегченную версию приложения для Android по ссылке");
+            } else {
+                System.out.println("Установите версию приложения для Android по ссылке");
+            }
+        }
+    }
+
     public static void main(String[] args) {
-        task1();
-//        task2();
+//        task1();
+        task2();
 //        task3();
     }
 
@@ -25,6 +44,9 @@ public class Main {
     private static void task2() {
         System.out.println("");
         System.out.println("Задача №2");
+        int typeOS = 1;
+        int clientDeviceYear = 2019;
+        checkOS(typeOS, clientDeviceYear);
     }
 
     private static void task3() {
