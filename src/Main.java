@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Main {
 
@@ -41,10 +42,47 @@ public class Main {
         return deliveryDays;
     }
 
+    public static void reverseArray(int[] arr) {
+        for (int i = 0; i < arr.length / 2; i++) {
+            int tmp = arr[i];
+            arr[i] = arr[arr.length - i - 1];
+            arr[arr.length - i - 1] = tmp;
+        }
+    }
+
+    public static void checkDouble(String str) {
+        char[] charStr = str.toCharArray();
+        for (int i = 0; i < charStr.length - 1; i++) {
+            for (int j = i + 1; j < charStr.length; j++) {
+                if (charStr[i] == charStr[j]) {
+                    System.out.println("В строке есть повторящийся символ - " + charStr[i]);
+                    return;
+                }
+            }
+        }
+    }
+
+    public static int calculateSum(int[] arr) {
+        int sum = Arrays.stream(arr).sum();
+        return sum;
+    }
+
+    public static double calcAvr(int sum, int[] arr) {
+        int count = 0;
+        for (int i = 0; i < arr.length; i++) {
+            count++;
+        }
+        double avr = (double) sum / count;
+        return avr;
+    }
+
     public static void main(String[] args) {
-        task1();
+        /*task1();
         task2();
-        task3();
+        task3();*/
+        task4();
+        task5();
+        task6();
     }
 
     private static void task1() {
@@ -73,4 +111,41 @@ public class Main {
             System.out.println("Доставки нет");
         }
     }
+
+    private static void task4() {
+        System.out.println("");
+        System.out.println("Задача №4");
+        int[] arr = {3, 2, 1, 6, 5};
+        reverseArray(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    private static void task5() {
+        System.out.println("");
+        System.out.println("Задача №5");
+        String str = "abaccddefgghiijjkk";
+        checkDouble(str);
+    }
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
+    }
+
+    private static void task6() {
+        System.out.println("");
+        System.out.println("Задача №6");
+        int[] arr = generateRandomArray();
+        int sum = calculateSum(arr);
+        System.out.println("Сумма затрат - " + sum);
+        double avr = calcAvr(sum, arr);
+        System.out.printf("Средняя сумма затрат в день %.2f рублей ", avr);
+    }
+
 }
